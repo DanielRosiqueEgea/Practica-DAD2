@@ -24,14 +24,17 @@ Como el hashtable es de <String, Usuario> nos da igual usar el nickname o la Cla
 El nickname se va a generar mediante el nombre y el apellido de la siguiente forma:
 
 ```java
-String nick = name[0] + surname;
+String nick = nombre.charAt(0) + apellido;
 String nickname = nick;
 int i=0;
 while(usuarios.containsKey(nickname)){
+i++;
 nickname = nick + i;
 }
 ```
 De esta forma si por ejemplo hubiesen 6 personas que se llamasen Dani Rosique (o David Rosique) la primera tendría el nickname drosique, la siguiente drosique1 y así hasta drosique6
+
+Esto hace que tengamos que modificar todas las clases que usan usuarios.
 
 ### Cambio 5: Cambio en Accion Login
 Ahora solo se inicializa el objeto User si ya existe dentro de la hashtable o si es admin. Tambien tiene en cuenta el nickname en lugar del name.
@@ -49,5 +52,11 @@ A esto:
 usuatios.get(nickname).validatePass(pass)
 ```
 
-# Propuestas:
+### Cambio 6: Añadido required en formularios
+ esto nos ahorra comprobar luego si es null o no. faltan formularios por revisar
+ 
+## Falta:
+Falta terminar el procesamiento de los nickname, en update usuario sobretodo.
+
+## Propuestas:
 Cifrado de contraseña usando mk5
